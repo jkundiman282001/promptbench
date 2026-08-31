@@ -1,0 +1,13 @@
+{
+    "name": "@promptbench/api",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "php artisan serve --port=8000",
+        "test": "php artisan test",
+        "migrate": "php artisan migrate",
+        "seed": "php artisan db:seed",
+        "build": "echo 'No assets build required for API backend'"
+    }
+}

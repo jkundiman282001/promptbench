@@ -3,14 +3,14 @@
 ## ADR 001: Hybrid Database Strategy (SQLite for Local Development, PostgreSQL for Production)
 - **Status:** Accepted
 - **Context:** We need instantaneous local setup without requiring container dependencies or complex local DB setup while ensuring seamless deployment to PostgreSQL (Neon, Render, Supabase, Azure).
-- **Decision:** Default to SQLite (`database/database.sqlite`) locally with full PostgreSQL compatibility and zero raw SQLite-specific SQL syntax. PostgreSQL connection settings (`DB_CONNECTION=pgsql` or `DATABASE_URL`) are pre-configured in `apps/api`.
+- **Decision:** Default to SQLite (`database/database.sqlite`) locally with full PostgreSQL compatibility and zero raw SQLite-specific SQL syntax. PostgreSQL connection settings (`DB_CONNECTION=pgsql` or `DATABASE_URL`) are pre-configured.
 - **Consequences:** Easy onboarding for any contributor with no prerequisites beyond PHP and Node; identical schema migrations run seamlessly on production PostgreSQL.
 
-## ADR 002: Monorepo Architecture with Decoupled Services
+## ADR 002: Inertia.js with React & TypeScript
 - **Status:** Accepted
-- **Context:** The system needs clear boundaries between API backend orchestration, client SPA presentation, and shared TypeScript domain definitions, enabling independent deployment targets (e.g. Vercel for web frontend, Laravel Cloud / Render for API).
-- **Decision:** Adopt an npm workspaces monorepo structure with `apps/api` (Laravel REST API), `apps/web` (React 19 + TypeScript + Tailwind CSS v4 SPA), and `packages/types` (Shared domain types).
-- **Consequences:** Clean separation of concerns, unified version control, single root `npm run dev` orchestration via `concurrently`, and shared typing without duplicate interface definitions.
+- **Context:** We need a responsive, highly interactive modern UI for real-time prompt editing, matrix comparisons, and benchmark telemetry without the complexity of managing a detached microservice API and separate authentication/CORS tokens.
+- **Decision:** Use Inertia.js v2 with React 19, TypeScript, and Tailwind CSS v4.
+- **Consequences:** Single-repository developer ergonomics, full server-side validation and security with client-side SPA speed and type safety.
 
 ## ADR 003: Provider-Agnostic LLM Driver Architecture
 - **Status:** Accepted

@@ -1,33 +1,21 @@
 {
-    "$schema": "https://www.schemastore.org/package.json",
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "build": "vite build",
-        "dev": "vite"
-    },
-    "devDependencies": {
-        "@tailwindcss/vite": "^4.0.0",
-        "@types/node": "^26.4.0",
-        "@types/react": "^19.2.18",
-        "@types/react-dom": "^19.2.5",
-        "@vitejs/plugin-react": "^6.1.1",
-        "concurrently": "^10.0.3",
-        "laravel-vite-plugin": "^3.1",
-        "tailwindcss": "^4.0.0",
-        "typescript": "^7.0.2",
-        "vite": "^8.0.0"
-    },
-    "optionalDependencies": {
-        "@laravel/multiplex": "^0.4.1"
-    },
-    "dependencies": {
-        "@inertiajs/react": "^3.7.0",
-        "axios": "^1.20.0",
-        "clsx": "^2.1.1",
-        "lucide-react": "^1.37.0",
-        "react": "^19.2.8",
-        "react-dom": "^19.2.8",
-        "tailwind-merge": "^3.6.0"
-    }
+  "name": "promptbench-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"api,web\" -c \"blue,magenta\" \"npm run dev --workspace=@promptbench/api\" \"npm run dev --workspace=@promptbench/web\"",
+    "build": "npm run build --workspaces",
+    "web": "npm run dev --workspace=@promptbench/web",
+    "api": "npm run dev --workspace=@promptbench/api",
+    "test": "npm run test --workspaces --if-present",
+    "migrate": "npm run migrate --workspace=@promptbench/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
 }
